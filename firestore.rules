@@ -1,0 +1,30 @@
+// budget_access/{email}: role (admin|budget|viewer), active bool. Provisioned by project administrators only.
+// budget_items/{id}: kind,year,code,projectId,name,owner,department,amounts[4],spent[4],version,updatedAt,updatedBy.
+// Money is stored as integer satang; project relationships and identifiers are immutable after creation.
+rules_version = '2';
+service cloud.firestore {
+ match /databases/{database}/documents {
+  function signedIn(){return request.auth != null && request.auth.token.email_verified == true && request.auth.token.firebase.sign_in_provider == 'google.com';}
+  function member(){return signedIn() && get(/databases/$(database)/documents/budget_access/$(request.auth.token.email.lower())).data.active == true && get(/databases/$(database)/documents/budget_access/$(request.auth.token.email.lower())).data.role in ['admin','budget','viewer'];}
+  function manager(){return member() && get(/databases/$(database)/documents/budget_access/$(request.auth.token.email.lower())).data.role in ['admin','budget'];}
+  function money(n){return n is int && n >= 0 && n <= 100000000000;}
+  function amounts(a){return a is list && a.size()==4 && money(a[0]) && money(a[1]) && money(a[2]) && money(a[3]);}
+  function text(t){return t is string && t.size()>0 && t.size()<=240 && t.matches('.*[^ ].*');}
+  function validItem(d,id){return d.keys().hasAll(['kind','year','code','projectId','name','owner','department','amounts','spent','version','updatedAt','updatedBy']) && d.keys().hasOnly(['kind','year','code','projectId','name','owner','department','amounts','spent','version','updatedAt','updatedBy'])
+   && d.kind in ['project','activity'] && d.year is int && d.year>=2500 && d.year<=2700 && d.code is int && d.code>0 && d.code<=1000000
+   && text(d.name) && text(d.owner) && d.department in ['ฝ่ายบริหารงานวิชาการ','ฝ่ายบริหารงานงบประมาณ','ฝ่ายบริหารงานบุคคล','ฝ่ายบริหารงานทั่วไป']
+   && amounts(d.amounts) && amounts(d.spent) && d.spent[0]<=d.amounts[0] && d.spent[1]<=d.amounts[1] && d.spent[2]<=d.amounts[2] && d.spent[3]<=d.amounts[3]
+   && d.version is int && d.version>0 && d.version<=1000000000 && d.updatedAt==request.time && d.updatedBy==request.auth.uid
+   && d.projectId is string && d.projectId == string(d.year)+'-P'+string(d.code)
+   && (d.kind=='project' ? id==d.projectId : id!=d.projectId && getAfter(/databases/$(database)/documents/budget_items/$(d.projectId)).data.kind=='project' && getAfter(/databases/$(database)/documents/budget_items/$(d.projectId)).data.department==d.department);
+  }
+  match /budget_access/{email}{allow get: if signedIn() && email==request.auth.token.email.lower();allow list,create,update,delete: if false;}
+  match /budget_items/{id}{
+   allow read: if member();
+   allow create: if manager() && validItem(request.resource.data,id) && request.resource.data.version==1;
+   allow update: if manager() && validItem(request.resource.data,id) && request.resource.data.year==resource.data.year && request.resource.data.kind==resource.data.kind && request.resource.data.code==resource.data.code && request.resource.data.projectId==resource.data.projectId && request.resource.data.version==resource.data.version+1;
+   allow delete: if false;
+  }
+  match /{document=**}{allow read,write: if false;}
+ }
+}

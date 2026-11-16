@@ -1,0 +1,1258 @@
+{
+  "testCases": [
+    {
+      "expectation": "DENY",
+      "request": {
+        "path": "/databases/(default)/documents/budget_items/2570-P1",
+        "method": "get",
+        "auth": null
+      }
+    },
+    {
+      "expectation": "ALLOW",
+      "request": {
+        "path": "/databases/(default)/documents/budget_items/2570-P1",
+        "method": "get",
+        "auth": {
+          "uid": "test-manager",
+          "token": {
+            "email": "manager@example.invalid",
+            "email_verified": true,
+            "firebase": {
+              "sign_in_provider": "google.com"
+            }
+          }
+        }
+      },
+      "functionMocks": [
+        {
+          "function": "get",
+          "args": [
+            {
+              "anyValue": {}
+            }
+          ],
+          "result": {
+            "value": {
+              "data": {
+                "role": "admin",
+                "active": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "expectation": "ALLOW",
+      "request": {
+        "path": "/databases/(default)/documents/budget_items/2570-P1",
+        "method": "list",
+        "auth": {
+          "uid": "test-manager",
+          "token": {
+            "email": "manager@example.invalid",
+            "email_verified": true,
+            "firebase": {
+              "sign_in_provider": "google.com"
+            }
+          }
+        }
+      },
+      "functionMocks": [
+        {
+          "function": "get",
+          "args": [
+            {
+              "anyValue": {}
+            }
+          ],
+          "result": {
+            "value": {
+              "data": {
+                "role": "viewer",
+                "active": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "expectation": "DENY",
+      "request": {
+        "path": "/databases/(default)/documents/budget_items/2570-P1",
+        "method": "create",
+        "auth": {
+          "uid": "test-manager",
+          "token": {
+            "email": "manager@example.invalid",
+            "email_verified": true,
+            "firebase": {
+              "sign_in_provider": "google.com"
+            }
+          }
+        },
+        "resource": {
+          "data": {}
+        }
+      },
+      "functionMocks": [
+        {
+          "function": "get",
+          "args": [
+            {
+              "anyValue": {}
+            }
+          ],
+          "result": {
+            "value": {
+              "data": {
+                "role": "viewer",
+                "active": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "expectation": "DENY",
+      "request": {
+        "path": "/databases/(default)/documents/budget_items/2570-P1",
+        "method": "get",
+        "auth": {
+          "uid": "test-manager",
+          "token": {
+            "email": "manager@example.invalid",
+            "email_verified": false,
+            "firebase": {
+              "sign_in_provider": "google.com"
+            }
+          }
+        }
+      },
+      "functionMocks": [
+        {
+          "function": "get",
+          "args": [
+            {
+              "anyValue": {}
+            }
+          ],
+          "result": {
+            "value": {
+              "data": {
+                "role": "admin",
+                "active": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "expectation": "DENY",
+      "request": {
+        "path": "/databases/(default)/documents/budget_access/other@example.invalid",
+        "method": "get",
+        "auth": {
+          "uid": "test-manager",
+          "token": {
+            "email": "manager@example.invalid",
+            "email_verified": true,
+            "firebase": {
+              "sign_in_provider": "google.com"
+            }
+          }
+        }
+      }
+    },
+    {
+      "expectation": "ALLOW",
+      "request": {
+        "path": "/databases/(default)/documents/budget_access/manager@example.invalid",
+        "method": "get",
+        "auth": {
+          "uid": "test-manager",
+          "token": {
+            "email": "manager@example.invalid",
+            "email_verified": true,
+            "firebase": {
+              "sign_in_provider": "google.com"
+            }
+          }
+        }
+      }
+    },
+    {
+      "expectation": "DENY",
+      "request": {
+        "path": "/databases/(default)/documents/budget_access/manager@example.invalid",
+        "method": "update",
+        "auth": {
+          "uid": "test-manager",
+          "token": {
+            "email": "manager@example.invalid",
+            "email_verified": true,
+            "firebase": {
+              "sign_in_provider": "google.com"
+            }
+          }
+        },
+        "resource": {
+          "data": {
+            "active": true,
+            "role": "admin"
+          }
+        }
+      },
+      "functionMocks": [
+        {
+          "function": "get",
+          "args": [
+            {
+              "anyValue": {}
+            }
+          ],
+          "result": {
+            "value": {
+              "data": {
+                "role": "admin",
+                "active": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "expectation": "DENY",
+      "request": {
+        "path": "/databases/(default)/documents/budget_items/2570-P1",
+        "method": "delete",
+        "auth": {
+          "uid": "test-manager",
+          "token": {
+            "email": "manager@example.invalid",
+            "email_verified": true,
+            "firebase": {
+              "sign_in_provider": "google.com"
+            }
+          }
+        }
+      },
+      "functionMocks": [
+        {
+          "function": "get",
+          "args": [
+            {
+              "anyValue": {}
+            }
+          ],
+          "result": {
+            "value": {
+              "data": {
+                "role": "admin",
+                "active": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "expectation": "ALLOW",
+      "request": {
+        "path": "/databases/(default)/documents/budget_items/2570-P1",
+        "method": "create",
+        "auth": {
+          "uid": "test-manager",
+          "token": {
+            "email": "manager@example.invalid",
+            "email_verified": true,
+            "firebase": {
+              "sign_in_provider": "google.com"
+            }
+          }
+        },
+        "time": "2026-11-16T06:00:00Z",
+        "resource": {
+          "data": {
+            "kind": "project",
+            "year": 2570,
+            "code": 1,
+            "projectId": "2570-P1",
+            "name": "โครงการทดสอบ",
+            "owner": "ครู",
+            "department": "ฝ่ายบริหารงานงบประมาณ",
+            "amounts": [
+              10000,
+              0,
+              0,
+              0
+            ],
+            "spent": [
+              100,
+              0,
+              0,
+              0
+            ],
+            "version": 1,
+            "updatedAt": "2026-11-16T06:00:00Z",
+            "updatedBy": "test-manager"
+          }
+        }
+      },
+      "functionMocks": [
+        {
+          "function": "get",
+          "args": [
+            {
+              "anyValue": {}
+            }
+          ],
+          "result": {
+            "value": {
+              "data": {
+                "role": "admin",
+                "active": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "expectation": "ALLOW",
+      "request": {
+        "path": "/databases/(default)/documents/budget_items/2570-P1",
+        "method": "create",
+        "auth": {
+          "uid": "test-manager",
+          "token": {
+            "email": "manager@example.invalid",
+            "email_verified": true,
+            "firebase": {
+              "sign_in_provider": "google.com"
+            }
+          }
+        },
+        "time": "2026-11-16T06:00:00Z",
+        "resource": {
+          "data": {
+            "kind": "project",
+            "year": 2570,
+            "code": 1,
+            "projectId": "2570-P1",
+            "name": "โครงการทดสอบ",
+            "owner": "ครู",
+            "department": "ฝ่ายบริหารงานงบประมาณ",
+            "amounts": [
+              10000,
+              0,
+              0,
+              0
+            ],
+            "spent": [
+              100,
+              0,
+              0,
+              0
+            ],
+            "version": 1,
+            "updatedAt": "2026-11-16T06:00:00Z",
+            "updatedBy": "test-manager"
+          }
+        }
+      },
+      "functionMocks": [
+        {
+          "function": "get",
+          "args": [
+            {
+              "anyValue": {}
+            }
+          ],
+          "result": {
+            "value": {
+              "data": {
+                "role": "admin",
+                "active": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "expectation": "ALLOW",
+      "request": {
+        "path": "/databases/(default)/documents/budget_items/2570-P1",
+        "method": "create",
+        "auth": {
+          "uid": "test-manager",
+          "token": {
+            "email": "manager@example.invalid",
+            "email_verified": true,
+            "firebase": {
+              "sign_in_provider": "google.com"
+            }
+          }
+        },
+        "time": "2026-11-16T06:00:00Z",
+        "resource": {
+          "data": {
+            "kind": "project",
+            "year": 2570,
+            "code": 1,
+            "projectId": "2570-P1",
+            "name": "โครงการทดสอบ",
+            "owner": "ครู",
+            "department": "ฝ่ายบริหารงานงบประมาณ",
+            "amounts": [
+              10000,
+              0,
+              0,
+              0
+            ],
+            "spent": [
+              100,
+              0,
+              0,
+              0
+            ],
+            "version": 1,
+            "updatedAt": "2026-11-16T06:00:00Z",
+            "updatedBy": "test-manager"
+          }
+        }
+      },
+      "functionMocks": [
+        {
+          "function": "get",
+          "args": [
+            {
+              "anyValue": {}
+            }
+          ],
+          "result": {
+            "value": {
+              "data": {
+                "role": "budget",
+                "active": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "expectation": "DENY",
+      "request": {
+        "path": "/databases/(default)/documents/budget_items/2570-P1",
+        "method": "create",
+        "auth": {
+          "uid": "test-manager",
+          "token": {
+            "email": "manager@example.invalid",
+            "email_verified": true,
+            "firebase": {
+              "sign_in_provider": "google.com"
+            }
+          }
+        },
+        "time": "2026-11-16T06:00:00Z",
+        "resource": {
+          "data": {
+            "kind": "project",
+            "year": 2570,
+            "code": 1,
+            "projectId": "2570-P1",
+            "name": "โครงการทดสอบ",
+            "owner": "ครู",
+            "department": "ฝ่ายบริหารงานงบประมาณ",
+            "amounts": [
+              -1,
+              0,
+              0,
+              0
+            ],
+            "spent": [
+              100,
+              0,
+              0,
+              0
+            ],
+            "version": 1,
+            "updatedAt": "2026-11-16T06:00:00Z",
+            "updatedBy": "test-manager"
+          }
+        }
+      },
+      "functionMocks": [
+        {
+          "function": "get",
+          "args": [
+            {
+              "anyValue": {}
+            }
+          ],
+          "result": {
+            "value": {
+              "data": {
+                "role": "admin",
+                "active": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "expectation": "DENY",
+      "request": {
+        "path": "/databases/(default)/documents/budget_items/2570-P1",
+        "method": "create",
+        "auth": {
+          "uid": "test-manager",
+          "token": {
+            "email": "manager@example.invalid",
+            "email_verified": true,
+            "firebase": {
+              "sign_in_provider": "google.com"
+            }
+          }
+        },
+        "time": "2026-11-16T06:00:00Z",
+        "resource": {
+          "data": {
+            "kind": "project",
+            "year": 2570,
+            "code": 1,
+            "projectId": "2570-P1",
+            "name": "โครงการทดสอบ",
+            "owner": "ครู",
+            "department": "ฝ่ายบริหารงานงบประมาณ",
+            "amounts": [
+              1.5,
+              0,
+              0,
+              0
+            ],
+            "spent": [
+              100,
+              0,
+              0,
+              0
+            ],
+            "version": 1,
+            "updatedAt": "2026-11-16T06:00:00Z",
+            "updatedBy": "test-manager"
+          }
+        }
+      },
+      "functionMocks": [
+        {
+          "function": "get",
+          "args": [
+            {
+              "anyValue": {}
+            }
+          ],
+          "result": {
+            "value": {
+              "data": {
+                "role": "admin",
+                "active": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "expectation": "DENY",
+      "request": {
+        "path": "/databases/(default)/documents/budget_items/2570-P1",
+        "method": "create",
+        "auth": {
+          "uid": "test-manager",
+          "token": {
+            "email": "manager@example.invalid",
+            "email_verified": true,
+            "firebase": {
+              "sign_in_provider": "google.com"
+            }
+          }
+        },
+        "time": "2026-11-16T06:00:00Z",
+        "resource": {
+          "data": {
+            "kind": "project",
+            "year": 2570,
+            "code": 1,
+            "projectId": "2570-P1",
+            "name": "โครงการทดสอบ",
+            "owner": "ครู",
+            "department": "ฝ่ายบริหารงานงบประมาณ",
+            "amounts": [
+              10000,
+              0,
+              0,
+              0
+            ],
+            "spent": [
+              10001,
+              0,
+              0,
+              0
+            ],
+            "version": 1,
+            "updatedAt": "2026-11-16T06:00:00Z",
+            "updatedBy": "test-manager"
+          }
+        }
+      },
+      "functionMocks": [
+        {
+          "function": "get",
+          "args": [
+            {
+              "anyValue": {}
+            }
+          ],
+          "result": {
+            "value": {
+              "data": {
+                "role": "admin",
+                "active": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "expectation": "DENY",
+      "request": {
+        "path": "/databases/(default)/documents/budget_items/2570-P1",
+        "method": "create",
+        "auth": {
+          "uid": "test-manager",
+          "token": {
+            "email": "manager@example.invalid",
+            "email_verified": true,
+            "firebase": {
+              "sign_in_provider": "google.com"
+            }
+          }
+        },
+        "time": "2026-11-16T06:00:00Z",
+        "resource": {
+          "data": {
+            "kind": "project",
+            "year": 2570,
+            "code": 1,
+            "projectId": "2570-P1",
+            "name": "โครงการทดสอบ",
+            "owner": "ครู",
+            "department": "ฝ่ายบริหารงานงบประมาณ",
+            "amounts": [
+              10000,
+              0,
+              0,
+              0
+            ],
+            "spent": [
+              100,
+              0,
+              0,
+              0
+            ],
+            "version": 1,
+            "updatedAt": "2026-11-16T06:00:00Z",
+            "updatedBy": "spoofed"
+          }
+        }
+      },
+      "functionMocks": [
+        {
+          "function": "get",
+          "args": [
+            {
+              "anyValue": {}
+            }
+          ],
+          "result": {
+            "value": {
+              "data": {
+                "role": "admin",
+                "active": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "expectation": "DENY",
+      "request": {
+        "path": "/databases/(default)/documents/budget_items/2570-P1",
+        "method": "create",
+        "auth": {
+          "uid": "test-manager",
+          "token": {
+            "email": "manager@example.invalid",
+            "email_verified": true,
+            "firebase": {
+              "sign_in_provider": "google.com"
+            }
+          }
+        },
+        "time": "2026-11-16T06:00:00Z",
+        "resource": {
+          "data": {
+            "kind": "project",
+            "year": 2570,
+            "code": 1,
+            "projectId": "2570-P1",
+            "name": "โครงการทดสอบ",
+            "owner": "ครู",
+            "department": "ฝ่ายบริหารงานงบประมาณ",
+            "amounts": [
+              10000,
+              0,
+              0,
+              0
+            ],
+            "spent": [
+              100,
+              0,
+              0,
+              0
+            ],
+            "version": 2,
+            "updatedAt": "2026-11-16T06:00:00Z",
+            "updatedBy": "test-manager"
+          }
+        }
+      },
+      "functionMocks": [
+        {
+          "function": "get",
+          "args": [
+            {
+              "anyValue": {}
+            }
+          ],
+          "result": {
+            "value": {
+              "data": {
+                "role": "admin",
+                "active": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "expectation": "DENY",
+      "request": {
+        "path": "/databases/(default)/documents/budget_items/2570-P1",
+        "method": "create",
+        "auth": {
+          "uid": "test-manager",
+          "token": {
+            "email": "manager@example.invalid",
+            "email_verified": true,
+            "firebase": {
+              "sign_in_provider": "google.com"
+            }
+          }
+        },
+        "time": "2026-11-16T06:00:00Z",
+        "resource": {
+          "data": {
+            "kind": "project",
+            "year": 2570,
+            "code": 1,
+            "projectId": "2570-P1",
+            "name": "โครงการทดสอบ",
+            "owner": "",
+            "department": "ฝ่ายบริหารงานงบประมาณ",
+            "amounts": [
+              10000,
+              0,
+              0,
+              0
+            ],
+            "spent": [
+              100,
+              0,
+              0,
+              0
+            ],
+            "version": 1,
+            "updatedAt": "2026-11-16T06:00:00Z",
+            "updatedBy": "test-manager"
+          }
+        }
+      },
+      "functionMocks": [
+        {
+          "function": "get",
+          "args": [
+            {
+              "anyValue": {}
+            }
+          ],
+          "result": {
+            "value": {
+              "data": {
+                "role": "admin",
+                "active": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "expectation": "DENY",
+      "request": {
+        "path": "/databases/(default)/documents/budget_items/2570-P1",
+        "method": "create",
+        "auth": {
+          "uid": "test-manager",
+          "token": {
+            "email": "manager@example.invalid",
+            "email_verified": true,
+            "firebase": {
+              "sign_in_provider": "google.com"
+            }
+          }
+        },
+        "time": "2026-11-16T06:00:00Z",
+        "resource": {
+          "data": {
+            "kind": "project",
+            "year": 2570,
+            "code": 1,
+            "projectId": "2570-P1",
+            "name": "โครงการทดสอบ",
+            "owner": "ครู",
+            "department": "ฝ่ายบริหารงานงบประมาณ",
+            "amounts": [
+              10000,
+              0,
+              0,
+              0
+            ],
+            "spent": [
+              100,
+              0,
+              0,
+              0
+            ],
+            "version": 1,
+            "updatedAt": "2026-11-16T06:00:00Z",
+            "updatedBy": "test-manager",
+            "extra": true
+          }
+        }
+      },
+      "functionMocks": [
+        {
+          "function": "get",
+          "args": [
+            {
+              "anyValue": {}
+            }
+          ],
+          "result": {
+            "value": {
+              "data": {
+                "role": "admin",
+                "active": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "expectation": "ALLOW",
+      "resource": {
+        "data": {
+          "kind": "project",
+          "year": 2570,
+          "code": 1,
+          "projectId": "2570-P1",
+          "name": "โครงการทดสอบ",
+          "owner": "ครู",
+          "department": "ฝ่ายบริหารงานงบประมาณ",
+          "amounts": [
+            10000,
+            0,
+            0,
+            0
+          ],
+          "spent": [
+            100,
+            0,
+            0,
+            0
+          ],
+          "version": 1,
+          "updatedAt": "2026-11-16T06:00:00Z",
+          "updatedBy": "test-manager"
+        }
+      },
+      "request": {
+        "path": "/databases/(default)/documents/budget_items/2570-P1",
+        "method": "update",
+        "auth": {
+          "uid": "test-manager",
+          "token": {
+            "email": "manager@example.invalid",
+            "email_verified": true,
+            "firebase": {
+              "sign_in_provider": "google.com"
+            }
+          }
+        },
+        "time": "2026-11-16T06:00:00Z",
+        "resource": {
+          "data": {
+            "kind": "project",
+            "year": 2570,
+            "code": 1,
+            "projectId": "2570-P1",
+            "name": "โครงการทดสอบ",
+            "owner": "ครู",
+            "department": "ฝ่ายบริหารงานงบประมาณ",
+            "amounts": [
+              10000,
+              0,
+              0,
+              0
+            ],
+            "spent": [
+              100,
+              0,
+              0,
+              0
+            ],
+            "version": 2,
+            "updatedAt": "2026-11-16T06:00:00Z",
+            "updatedBy": "test-manager"
+          }
+        }
+      },
+      "functionMocks": [
+        {
+          "function": "get",
+          "args": [
+            {
+              "anyValue": {}
+            }
+          ],
+          "result": {
+            "value": {
+              "data": {
+                "role": "admin",
+                "active": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "expectation": "DENY",
+      "resource": {
+        "data": {
+          "kind": "project",
+          "year": 2570,
+          "code": 1,
+          "projectId": "2570-P1",
+          "name": "โครงการทดสอบ",
+          "owner": "ครู",
+          "department": "ฝ่ายบริหารงานงบประมาณ",
+          "amounts": [
+            10000,
+            0,
+            0,
+            0
+          ],
+          "spent": [
+            100,
+            0,
+            0,
+            0
+          ],
+          "version": 1,
+          "updatedAt": "2026-11-16T06:00:00Z",
+          "updatedBy": "test-manager"
+        }
+      },
+      "request": {
+        "path": "/databases/(default)/documents/budget_items/2570-P1",
+        "method": "update",
+        "auth": {
+          "uid": "test-manager",
+          "token": {
+            "email": "manager@example.invalid",
+            "email_verified": true,
+            "firebase": {
+              "sign_in_provider": "google.com"
+            }
+          }
+        },
+        "time": "2026-11-16T06:00:00Z",
+        "resource": {
+          "data": {
+            "kind": "project",
+            "year": 2570,
+            "code": 1,
+            "projectId": "2570-P1",
+            "name": "โครงการทดสอบ",
+            "owner": "ครู",
+            "department": "ฝ่ายบริหารงานงบประมาณ",
+            "amounts": [
+              10000,
+              0,
+              0,
+              0
+            ],
+            "spent": [
+              100,
+              0,
+              0,
+              0
+            ],
+            "version": 1,
+            "updatedAt": "2026-11-16T06:00:00Z",
+            "updatedBy": "test-manager"
+          }
+        }
+      },
+      "functionMocks": [
+        {
+          "function": "get",
+          "args": [
+            {
+              "anyValue": {}
+            }
+          ],
+          "result": {
+            "value": {
+              "data": {
+                "role": "admin",
+                "active": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "expectation": "ALLOW",
+      "request": {
+        "path": "/databases/(default)/documents/budget_items/activity-test",
+        "method": "create",
+        "auth": {
+          "uid": "test-manager",
+          "token": {
+            "email": "manager@example.invalid",
+            "email_verified": true,
+            "firebase": {
+              "sign_in_provider": "google.com"
+            }
+          }
+        },
+        "time": "2026-11-16T06:00:00Z",
+        "resource": {
+          "data": {
+            "kind": "activity",
+            "year": 2570,
+            "code": 1,
+            "projectId": "2570-P1",
+            "name": "กิจกรรม",
+            "owner": "ครู",
+            "department": "ฝ่ายบริหารงานงบประมาณ",
+            "amounts": [
+              10000,
+              0,
+              0,
+              0
+            ],
+            "spent": [
+              100,
+              0,
+              0,
+              0
+            ],
+            "version": 1,
+            "updatedAt": "2026-11-16T06:00:00Z",
+            "updatedBy": "test-manager"
+          }
+        }
+      },
+      "functionMocks": [
+        {
+          "function": "get",
+          "args": [
+            {
+              "anyValue": {}
+            }
+          ],
+          "result": {
+            "value": {
+              "data": {
+                "role": "budget",
+                "active": true
+              }
+            }
+          }
+        },
+        {
+          "function": "getAfter",
+          "args": [
+            {
+              "anyValue": {}
+            }
+          ],
+          "result": {
+            "value": {
+              "data": {
+                "kind": "project",
+                "year": 2570,
+                "code": 1,
+                "projectId": "2570-P1",
+                "name": "โครงการทดสอบ",
+                "owner": "ครู",
+                "department": "ฝ่ายบริหารงานงบประมาณ",
+                "amounts": [
+                  10000,
+                  0,
+                  0,
+                  0
+                ],
+                "spent": [
+                  100,
+                  0,
+                  0,
+                  0
+                ],
+                "version": 1,
+                "updatedAt": "2026-11-16T06:00:00Z",
+                "updatedBy": "test-manager"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "expectation": "DENY",
+      "request": {
+        "path": "/databases/(default)/documents/budget_items/activity-test",
+        "method": "create",
+        "auth": {
+          "uid": "test-manager",
+          "token": {
+            "email": "manager@example.invalid",
+            "email_verified": true,
+            "firebase": {
+              "sign_in_provider": "google.com"
+            }
+          }
+        },
+        "time": "2026-11-16T06:00:00Z",
+        "resource": {
+          "data": {
+            "kind": "activity",
+            "year": 2570,
+            "code": 1,
+            "projectId": "2570-P1",
+            "name": "กิจกรรม",
+            "owner": "ครู",
+            "department": "ฝ่ายบริหารงานวิชาการ",
+            "amounts": [
+              10000,
+              0,
+              0,
+              0
+            ],
+            "spent": [
+              100,
+              0,
+              0,
+              0
+            ],
+            "version": 1,
+            "updatedAt": "2026-11-16T06:00:00Z",
+            "updatedBy": "test-manager"
+          }
+        }
+      },
+      "functionMocks": [
+        {
+          "function": "get",
+          "args": [
+            {
+              "anyValue": {}
+            }
+          ],
+          "result": {
+            "value": {
+              "data": {
+                "role": "admin",
+                "active": true
+              }
+            }
+          }
+        },
+        {
+          "function": "getAfter",
+          "args": [
+            {
+              "anyValue": {}
+            }
+          ],
+          "result": {
+            "value": {
+              "data": {
+                "kind": "project",
+                "year": 2570,
+                "code": 1,
+                "projectId": "2570-P1",
+                "name": "โครงการทดสอบ",
+                "owner": "ครู",
+                "department": "ฝ่ายบริหารงานงบประมาณ",
+                "amounts": [
+                  10000,
+                  0,
+                  0,
+                  0
+                ],
+                "spent": [
+                  100,
+                  0,
+                  0,
+                  0
+                ],
+                "version": 1,
+                "updatedAt": "2026-11-16T06:00:00Z",
+                "updatedBy": "test-manager"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
