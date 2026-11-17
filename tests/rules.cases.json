@@ -1253,6 +1253,266 @@
           }
         }
       ]
+    },
+    {
+      "expectation": "ALLOW",
+      "request": {
+        "path": "/databases/(default)/documents/budget_items/2570-P1",
+        "method": "create",
+        "auth": {
+          "uid": "test-manager",
+          "token": {
+            "email": "manager@example.invalid",
+            "email_verified": true,
+            "firebase": {
+              "sign_in_provider": "google.com"
+            }
+          }
+        },
+        "time": "2026-11-16T06:00:00Z",
+        "resource": {
+          "data": {
+            "kind": "project",
+            "year": 2570,
+            "code": 1,
+            "projectId": "2570-P1",
+            "name": "โครงการทดสอบ",
+            "owner": "ครู",
+            "department": "ฝ่ายบริหารงานงบประมาณ",
+            "amounts": [
+              10000,
+              0,
+              0,
+              0
+            ],
+            "spent": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "version": 1,
+            "updatedAt": "2026-11-16T06:00:00Z",
+            "updatedBy": "test-manager",
+            "spendingKnown": false,
+            "allocationKnown": true
+          }
+        }
+      },
+      "functionMocks": [
+        {
+          "function": "get",
+          "args": [
+            {
+              "anyValue": {}
+            }
+          ],
+          "result": {
+            "value": {
+              "data": {
+                "role": "admin",
+                "active": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "expectation": "DENY",
+      "request": {
+        "path": "/databases/(default)/documents/budget_items/2570-P1",
+        "method": "create",
+        "auth": {
+          "uid": "test-manager",
+          "token": {
+            "email": "manager@example.invalid",
+            "email_verified": true,
+            "firebase": {
+              "sign_in_provider": "google.com"
+            }
+          }
+        },
+        "time": "2026-11-16T06:00:00Z",
+        "resource": {
+          "data": {
+            "kind": "project",
+            "year": 2570,
+            "code": 1,
+            "projectId": "2570-P1",
+            "name": "โครงการทดสอบ",
+            "owner": "ครู",
+            "department": "ฝ่ายบริหารงานงบประมาณ",
+            "amounts": [
+              10000,
+              0,
+              0,
+              0
+            ],
+            "spent": [
+              100,
+              0,
+              0,
+              0
+            ],
+            "version": 1,
+            "updatedAt": "2026-11-16T06:00:00Z",
+            "updatedBy": "test-manager",
+            "allocationKnown": false
+          }
+        }
+      },
+      "functionMocks": [
+        {
+          "function": "get",
+          "args": [
+            {
+              "anyValue": {}
+            }
+          ],
+          "result": {
+            "value": {
+              "data": {
+                "role": "admin",
+                "active": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "expectation": "DENY",
+      "request": {
+        "path": "/databases/(default)/documents/budget_items/2570-P1",
+        "method": "create",
+        "auth": {
+          "uid": "test-manager",
+          "token": {
+            "email": "manager@example.invalid",
+            "email_verified": true,
+            "firebase": {
+              "sign_in_provider": "google.com"
+            }
+          }
+        },
+        "time": "2026-11-16T06:00:00Z",
+        "resource": {
+          "data": {
+            "kind": "project",
+            "year": 2570,
+            "code": 1,
+            "projectId": "2570-P1",
+            "name": "โครงการทดสอบ",
+            "owner": "ครู",
+            "department": "ฝ่ายบริหารงานงบประมาณ",
+            "amounts": [
+              10000,
+              0,
+              0,
+              0
+            ],
+            "spent": [
+              100,
+              0,
+              0,
+              0
+            ],
+            "version": 1,
+            "updatedAt": "2026-11-16T06:00:00Z",
+            "updatedBy": "test-manager",
+            "spendingKnown": false
+          }
+        }
+      },
+      "functionMocks": [
+        {
+          "function": "get",
+          "args": [
+            {
+              "anyValue": {}
+            }
+          ],
+          "result": {
+            "value": {
+              "data": {
+                "role": "admin",
+                "active": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "expectation": "ALLOW",
+      "request": {
+        "path": "/databases/(default)/documents/budget_year_metadata/2570",
+        "method": "get",
+        "auth": {
+          "uid": "test-manager",
+          "token": {
+            "email": "manager@example.invalid",
+            "email_verified": true,
+            "firebase": {
+              "sign_in_provider": "google.com"
+            }
+          }
+        }
+      },
+      "functionMocks": [
+        {
+          "function": "get",
+          "args": [
+            {
+              "anyValue": {}
+            }
+          ],
+          "result": {
+            "value": {
+              "data": {
+                "role": "viewer",
+                "active": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "expectation": "DENY",
+      "request": {
+        "path": "/databases/(default)/documents/budget_year_metadata/2570",
+        "method": "update",
+        "auth": {
+          "uid": "test-manager",
+          "token": {
+            "email": "manager@example.invalid",
+            "email_verified": true,
+            "firebase": {
+              "sign_in_provider": "google.com"
+            }
+          }
+        }
+      },
+      "functionMocks": [
+        {
+          "function": "get",
+          "args": [
+            {
+              "anyValue": {}
+            }
+          ],
+          "result": {
+            "value": {
+              "data": {
+                "role": "admin",
+                "active": true
+              }
+            }
+          }
+        }
+      ]
     }
   ]
 }
