@@ -1,7 +1,7 @@
 {
   "testCases": [
     {
-      "expectation": "DENY",
+      "expectation": "ALLOW",
       "request": {
         "path": "/databases/(default)/documents/budget_items/2570-P1",
         "method": "get",
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "expectation": "DENY",
+      "expectation": "ALLOW",
       "request": {
         "path": "/databases/(default)/documents/budget_items/2570-P1",
         "method": "get",
@@ -1513,6 +1513,65 @@
           }
         }
       ]
+    },
+    {
+      "expectation": "DENY",
+      "request": {
+        "path": "/databases/(default)/documents/budget_items/2570-P1",
+        "method": "create",
+        "auth": null,
+        "time": "2026-11-16T06:00:00Z",
+        "resource": {
+          "data": {
+            "kind": "project",
+            "year": 2570,
+            "code": 1,
+            "projectId": "2570-P1",
+            "name": "โครงการทดสอบ",
+            "owner": "ครู",
+            "department": "ฝ่ายบริหารงานงบประมาณ",
+            "amounts": [
+              10000,
+              0,
+              0,
+              0
+            ],
+            "spent": [
+              100,
+              0,
+              0,
+              0
+            ],
+            "version": 1,
+            "updatedAt": "2026-11-16T06:00:00Z",
+            "updatedBy": "test-manager"
+          }
+        }
+      }
+    },
+    {
+      "expectation": "DENY",
+      "request": {
+        "path": "/databases/(default)/documents/budget_access/manager@example.invalid",
+        "method": "get",
+        "auth": null
+      }
+    },
+    {
+      "expectation": "DENY",
+      "request": {
+        "path": "/databases/(default)/documents/budget_imports/test",
+        "method": "get",
+        "auth": null
+      }
+    },
+    {
+      "expectation": "ALLOW",
+      "request": {
+        "path": "/databases/(default)/documents/budget_year_metadata/2570",
+        "method": "get",
+        "auth": null
+      }
     }
   ]
 }
